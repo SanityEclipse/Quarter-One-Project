@@ -18,7 +18,7 @@ Enemybat = function(index, game, x, y) {
 var enemy1;
 var enemy2;
 
-Game.Level1 = function(game) {};
+Game.Level2 = function(game) {};
 var background;
 var map;
 var layer;
@@ -39,10 +39,10 @@ var backgroundMusic;
 
 
 
-Game.Level1.prototype = {
+Game.Level2.prototype = {
     create: function(game) {
 
-        backgroundMusic = game.add.audio('L1');
+        backgroundMusic = game.add.audio('L2');
         backgroundMusic.loop= true;
         backgroundMusic.play();
 
@@ -50,7 +50,7 @@ Game.Level1.prototype = {
         this.fire = game.add.audio('fire');
         this.scream = game.add.audio('scream');
 
-        background = this.add.tileSprite(0, 0, 7000, 5000, "background");
+        background = this.add.tileSprite(0, 0, 7000, 5000, "background_32.png");
         background.fixedToCamera = true;
 
         this.physics.arcade.gravity.y = 1400;

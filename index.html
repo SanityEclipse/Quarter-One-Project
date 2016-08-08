@@ -10,9 +10,15 @@
     <script src="MainMenu.js"></script>
     <script src="Play.js"></script>
     <script src="Level1.js"></script>
+    <script src="Level2.js"></script>
+    <style>
+    .zoom {
+      zoom:150%
+    }
+    </style>
 </head>
 
-<body>
+<body class='zoom'>
 
 
 
@@ -24,6 +30,7 @@
             game.state.add('Preloader', Game.Preloader);
             game.state.add('MainMenu', Game.MainMenu);
             game.state.add('Level1', Game.Level1);
+            game.state.add('Level2', Game.Level2);
             game.state.start('Boot');
         }
     </script>
