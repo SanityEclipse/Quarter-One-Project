@@ -7,6 +7,11 @@ var button;
 Game.MainMenu.prototype = {
 
     create: function(game) {
+        text = game.add.text(game.world.centerX - 115, game.world.centerY - 75, "PLAY", {
+            font: "25px Arial",
+            fill: "#ff0044",
+            align: "center"
+        });
 
 
         text = game.add.text(game.world.centerX, game.world.centerY - 125, "The Last Flame Templar", {

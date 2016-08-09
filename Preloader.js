@@ -42,6 +42,6 @@ Game.Preloader.prototype = {
     },
 
     create: function() {
-        this.state.start('Level2');
+        this.state.start('MainMenu');
     }
 };

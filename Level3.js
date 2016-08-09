@@ -79,8 +79,8 @@ var scream;
 var backgroundMusic;
 var text;
 var count = 0;
-var text1;
-var lives = 3;
+// var text1;
+// var lives = 3;
 
 
 
@@ -188,12 +188,12 @@ Game.Level3.prototype = {
 
         });
         text.fixedToCamera = true;
-        text1 = game.add.text(game.camera.x + 175, game.camera.y + 350, 'Lives: ' + lives, {
-            font: '18px Arial',
-            fill: '#0095DD',
-            align: 'center'
-        });
-        text1.fixedToCamera = true;
+        // text1 = game.add.text(game.camera.x + 175, game.camera.y + 350, 'Lives: ' + lives, {
+        //     font: '18px Arial',
+        //     fill: '#0095DD',
+        //     align: 'center'
+        // });
+        // text1.fixedToCamera = true;
 
 
     },
@@ -287,13 +287,13 @@ Game.Level3.prototype = {
     resetPlayer: function() {
 
         text.setText("Score:" + (count -= 500));
-        text1.setText("Lives:" + (lives -= 1));
-        if (lives === 0) {
-            console.log("Loud and Clear!");
-        } else {
+        // text1.setText("Lives:" + (lives -= 1));
+        // if (lives === 0) {
+        //     console.log("Loud and Clear!");
+        // } else {
 
-            player.reset(0, 0);
-        }
+        player.reset(0, 0);
+        // }
     },
     nextLevel: function() {
         backgroundMusic.mute = true;
