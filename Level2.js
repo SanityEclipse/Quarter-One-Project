@@ -14,9 +14,48 @@ Enemybat = function(index, game, x, y) {
 
 
 }
+Enemyflamewheel = function(index, game, x, y) {
+        this.flamewheel = game.add.sprite(x, y, 'flamewheel');
+        this.flamewheel.anchor.setTo(0.5, 0.5);
+        this.flamewheel.name = index.toString();
+        game.physics.enable(this.flamewheel, Phaser.Physics.ARCADE);
+        this.flamewheel.body.immovable = true;
+        this.flamewheel.body.collideWorldBounds = false;
+        this.flamewheel.body.allowGravity = false;
+        this.flamewheelTween = game.add.tween(this.flamewheel).to({
+            x: this.flamewheel.x + 100
+        }, 1500, 'Linear', true, 0, 100, true);
+        this.flamewheel.animations.add('walk', [0, 1, 2], 5, true);
+        this.flamewheel.animations.play('walk', 10, true);
+
+    },
+
+    //Horizontal Movement
+    Enemywheel = function(index, game, x, y) {
+        this.wheel = game.add.sprite(x, y, 'wheel');
+        this.wheel.anchor.setTo(0.5, 0.5);
+        this.wheel.name = index.toString();
+        game.physics.enable(this.wheel, Phaser.Physics.ARCADE);
+        this.wheel.body.immovable = true;
+        this.wheel.body.collideWorldBounds = false;
+        this.wheel.body.allowGravity = false;
+        this.wheelTween = game.add.tween(this.wheel).to({
+            y: this.wheel.y + 100
+        }, 1500, 'Linear', true, 0, 100, true);
+        this.wheel.animations.add('walk', [0, 1, 2], 5, true);
+        this.wheel.animations.play('walk', 10, true);
+    }
 
 var enemy1;
 var enemy2;
+var enemy3;
+var enemy4;
+var enemy5;
+var enemy6;
+var enemy7;
+var enemy8;
+var enemy9;
+var enemy10;
 
 Game.Level2 = function(game) {};
 var background;
@@ -103,8 +142,19 @@ Game.Level2.prototype = {
             // }, this, 2, 1, 0);
 
 
-        enemy1 = new Enemybat(0, game, player.x + 300, player.y - 75);
-        enemy2 = new Enemybat(0, game, player.x + 450, player.y - 150);
+        enemy1 = new Enemybat(0, game, player.x + 300, player.y - 100);
+        enemy2 = new Enemybat(0, game, player.x + 450, player.y - 160);
+        enemy3 = new Enemywheel(0, game, player.x + 630, player.y - 160);
+        enemy4 = new Enemywheel(0, game, player.x + 715, player.y - 125);
+        enemy5 = new Enemywheel(0, game, player.x + 830, player.y - 145);
+        enemy6 = new Enemybat(0, game, player.x + 1000, player.y - 100);
+        enemy7 = new Enemybat(0, game, player.x + 1200, player.y - 160);
+        enemy8 = new Enemywheel(0, game, player.x + 1500, player.y);
+        enemy9 = new Enemywheel(0, game, player.x + 1700, player.y + 100);
+        enemy10 = new Enemywheel(0, game, player.x + 1900, player.y);
+
+
+
 
 
         fireballs = game.add.group();
@@ -144,6 +194,18 @@ Game.Level2.prototype = {
         this.physics.arcade.collide(player, layer);
         this.physics.arcade.collide(player, enemy1.bat, this.resetPlayer);
         this.physics.arcade.collide(player, enemy2.bat, this.resetPlayer);
+        this.physics.arcade.collide(player, enemy3.wheel, this.resetPlayer);
+        this.physics.arcade.collide(player, enemy4.wheel, this.resetPlayer);
+        this.physics.arcade.collide(player, enemy5.wheel, this.resetPlayer);
+        this.physics.arcade.collide(player, enemy6.bat, this.resetPlayer);
+        this.physics.arcade.collide(player, enemy7.bat, this.resetPlayer);
+        this.physics.arcade.collide(player, enemy8.wheel, this.resetPlayer);
+        this.physics.arcade.collide(player, enemy9.wheel, this.resetPlayer);
+        this.physics.arcade.collide(player, enemy10.wheel, this.resetPlayer);
+
+
+
+
         player.body.velocity.x = 0;
 
 
@@ -192,6 +254,20 @@ Game.Level2.prototype = {
         if (checkOverlap(fireballs, enemy2.bat)) {
 
             enemy2.bat.kill();
+            text.setText("Score:" + (count += 50));
+            this.ignite.play();
+
+        }
+        if (checkOverlap(fireballs, enemy6.bat)) {
+
+            enemy6.bat.kill();
+            text.setText("Score:" + (count += 50));
+            this.ignite.play();
+
+        }
+        if (checkOverlap(fireballs, enemy7.bat)) {
+
+            enemy7.bat.kill();
             text.setText("Score:" + (count += 50));
             this.ignite.play();
 

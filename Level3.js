@@ -8,7 +8,7 @@ Enemybat = function(index, game, x, y) {
         this.bat.body.allowGravity = false;
         this.batTween = game.add.tween(this.bat).to({
             y: this.bat.y + 100
-        }, 2000, 'Linear', true, 0, 100, true);
+        }, 1000, 'Linear', true, 0, 100, true);
         this.bat.animations.add('fly', [0, 1, 2, 3], 5, true);
         this.bat.animations.play('fly', 20, true);
 
@@ -25,7 +25,7 @@ Enemybat = function(index, game, x, y) {
         this.flamewheel.body.allowGravity = false;
         this.flamewheelTween = game.add.tween(this.flamewheel).to({
             x: this.flamewheel.x + 100
-        }, 2000, 'Linear', true, 0, 100, true);
+        }, 1500, 'Linear', true, 0, 100, true);
         this.flamewheel.animations.add('walk', [0, 1, 2], 5, true);
         this.flamewheel.animations.play('walk', 10, true);
 
@@ -42,11 +42,10 @@ Enemybat = function(index, game, x, y) {
         this.wheel.body.allowGravity = false;
         this.wheelTween = game.add.tween(this.wheel).to({
             y: this.wheel.y + 100
-        }, 2000, 'Linear', true, 0, 100, true);
+        }, 1500, 'Linear', true, 0, 100, true);
         this.wheel.animations.add('walk', [0, 1, 2], 5, true);
         this.wheel.animations.play('walk', 10, true);
     }
-
 var enemy1;
 var enemy2;
 var enemy3;
@@ -146,20 +145,23 @@ Game.Level3.prototype = {
             //     console.log("pressed");
             // }, this, 2, 1, 0);
 
-
-        enemy1 = new Enemybat(0, game, player.x + 300, player.y - 75);
-        enemy2 = new Enemybat(0, game, player.x + 450, player.y - 75);
-        enemy3 = new Enemybat(0, game, player.x + 600, player.y - 75);
-        enemy4 = new Enemyflamewheel(0, game, player.x + 800, player.y + 5);
-        enemy5 = new Enemyflamewheel(0, game, player.x + 900, player.y + 5);
-        enemy6 = new Enemyflamewheel(0, game, player.x + 1450, player.y + 25);
-        enemy7 = new Enemywheel(0, game, player.x + 980, player.y - 150);
-        enemy8 = new Enemybat(0, game, player.x + 1170, player.y - 100);
-        enemy9 = new Enemybat(0, game, player.x + 1230, player.y - 150);
-        enemy10 = new Enemyflamewheel(0, game, player.x + 1650, player.y + 5);
-        enemy11 = new Enemyflamewheel(0, game, player.x + 1725, player.y - 95);
-        enemy12 = new Enemyflamewheel(0, game, player.x + 1800, player.y - 185);
-        enemy13 = new Enemyflamewheel(0, game, player.x + 1900, player.y - 285);
+        enemy1 = new Enemywheel(0, game, player.x + 905, player.y + 550);
+        enemy2 = new Enemywheel(0, game, player.x + 1285, player.y + 550);
+        enemy3 = new Enemybat(0, game, player.x + 600, player.y + 600);
+        enemy4 = new Enemyflamewheel(0, game, player.x + 400, player.y + 690);
+        enemy5 = new Enemyflamewheel(0, game, player.x + 600, player.y + 690);
+        enemy6 = new Enemyflamewheel(0, game, player.x + 1450, player.y + 400);
+        enemy7 = new Enemywheel(0, game, player.x + 775, player.y + 600);
+        enemy8 = new Enemybat(0, game, player.x + 1600, player.y + 300);
+        enemy9 = new Enemybat(0, game, player.x + 1700, player.y + 300);
+        enemy10 = new Enemyflamewheel(0, game, player.x + 2000, player.y + 450);
+        enemy11 = new Enemyflamewheel(0, game, player.x + 2200, player.y + 450);
+        enemy12 = new Enemyflamewheel(0, game, player.x + 2400, player.y + 450);
+        enemy13 = new Enemyflamewheel(0, game, player.x + 2600, player.y + 450);
+        enemy14 = new Enemyflamewheel(0, game, player.x + 2800, player.y + 450);
+        enemy15 = new Enemyflamewheel(0, game, player.x + 3000, player.y + 450);
+        enemy16 = new Enemyflamewheel(0, game, player.x + 3200, player.y + 450);
+        enemy17 = new Enemyflamewheel(0, game, player.x + 3400, player.y + 450);
 
 
 
@@ -199,8 +201,8 @@ Game.Level3.prototype = {
 
         this.physics.arcade.collide(player, layer);
 
-        this.physics.arcade.collide(player, enemy1.bat, this.resetPlayer);
-        this.physics.arcade.collide(player, enemy2.bat, this.resetPlayer);
+        this.physics.arcade.collide(player, enemy1.wheel, this.resetPlayer);
+        this.physics.arcade.collide(player, enemy2.wheel, this.resetPlayer);
         this.physics.arcade.collide(player, enemy3.bat, this.resetPlayer);
         this.physics.arcade.collide(player, enemy4.flamewheel, this.resetPlayer);
         this.physics.arcade.collide(player, enemy5.flamewheel, this.resetPlayer);
@@ -212,6 +214,10 @@ Game.Level3.prototype = {
         this.physics.arcade.collide(player, enemy11.flamewheel, this.resetPlayer);
         this.physics.arcade.collide(player, enemy12.flamewheel, this.resetPlayer);
         this.physics.arcade.collide(player, enemy13.flamewheel, this.resetPlayer);
+        this.physics.arcade.collide(player, enemy14.flamewheel, this.resetPlayer);
+        this.physics.arcade.collide(player, enemy15.flamewheel, this.resetPlayer);
+        this.physics.arcade.collide(player, enemy16.flamewheel, this.resetPlayer);
+        this.physics.arcade.collide(player, enemy17.flamewheel, this.resetPlayer);
 
 
 
@@ -253,20 +259,7 @@ Game.Level3.prototype = {
 
         //FIREBALL COLLISIONS WITH ENEMIES
 
-        if (checkOverlap(fireballs, enemy1.bat)) {
-            enemy1.bat.kill();
-            text.setText("Score:" + (count += 50));
-            this.ignite.play();
 
-
-        }
-        if (checkOverlap(fireballs, enemy2.bat)) {
-
-            enemy2.bat.kill();
-            text.setText("Score:" + (count += 50));
-            this.ignite.play();
-
-        }
         if (checkOverlap(fireballs, enemy3.bat)) {
 
             enemy3.bat.kill();
