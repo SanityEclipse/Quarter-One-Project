@@ -49,15 +49,19 @@ Game.MainMenu.prototype = {
 
 
         function actionOnClick() {
+
             backgroundMusic.mute = true;
             this.state.start('Level1');
         }
+
 
 
     },
 
     update: function(game) {
 
+
     },
+
 
 };

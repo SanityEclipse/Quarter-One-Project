@@ -34,6 +34,10 @@ var ignite;
 var fire;
 var scream;
 var backgroundMusic;
+var text;
+var count = 0;
+var text1;
+var lives = 3;
 
 
 
@@ -41,34 +45,45 @@ var backgroundMusic;
 
 Game.Level2.prototype = {
     create: function(game) {
+        this.camera.flash('#000000');
+
 
         backgroundMusic = game.add.audio('L2');
-        backgroundMusic.loop= true;
+        backgroundMusic.loop = true;
         backgroundMusic.play();
 
         this.ignite = game.add.audio('ignite');
         this.fire = game.add.audio('fire');
         this.scream = game.add.audio('scream');
+        this.gold = game.add.audio('gold');
 
-        background = this.add.tileSprite(0, 0, 7000, 5000, "background_32.png");
+        background = this.add.tileSprite(0, 0, 7000, 5000, 'background');
         background.fixedToCamera = true;
 
         this.physics.arcade.gravity.y = 1400;
 
-        map = this.add.tilemap('map', 32, 32);
+        map = this.add.tilemap('map2', 32, 32);
         map.addTilesetImage('tileset');
         layer = map.createLayer(0);
         layer.resizeWorld();
-        map.setCollisionBetween(547, 552);
-        map.setCollisionBetween(200, 202);
-        map.setCollision(162);
+        map.setCollision(647);
+        map.setCollision(649);
+        map.setCollisionBetween(706, 708);
+        map.setCollisionBetween(710, 711);
+        map.setCollision(713);
 
 
-        map.setTileIndexCallback(194, this.resetPlayer, this);
+        map.setTileIndexCallback(197, this.resetPlayer, this);
+        map.setTileIndexCallback(148, this.getItem, this);
+        map.setTileIndexCallback(150, this.getItem, this);
+        map.setTileIndexCallback(181, this.getItem, this);
+        map.setTileIndexCallback(213, this.getItem, this);
+
+        map.setTileIndexCallback(192, this.nextLevel, this);
 
 
 
-        player = this.add.sprite(100, 400, 'player');
+        player = this.add.sprite(0, 250, 'player');
         player.anchor.setTo(0.5, 0.5);
         player.animations.add('idle', [0, 1], 1, true);
         player.animations.add('jump', [2], 1, true);
@@ -89,7 +104,7 @@ Game.Level2.prototype = {
 
 
         enemy1 = new Enemybat(0, game, player.x + 300, player.y - 75);
-        enemy2 = new Enemybat(0, game, player.x + 450, player.y - 75);
+        enemy2 = new Enemybat(0, game, player.x + 450, player.y - 150);
 
 
         fireballs = game.add.group();
@@ -106,11 +121,25 @@ Game.Level2.prototype = {
         fireballs.callAll('animations.add', 'animations', 'fireballs', [0, 1, 2, 3], 5, true);
         fireballs.callAll('play', null, 'fireballs');
 
+        text = game.add.text(game.camera.x + 50, game.camera.y + 350, 'Score:' + count, {
+            font: '18px Arial',
+            fill: '#0095DD',
+            align: 'center'
+
+
+
+        });
+        text.fixedToCamera = true;
 
 
 
     },
+
     update: function() {
+
+
+
+
 
         this.physics.arcade.collide(player, layer);
         this.physics.arcade.collide(player, enemy1.bat, this.resetPlayer);
@@ -155,6 +184,7 @@ Game.Level2.prototype = {
 
         if (checkOverlap(fireballs, enemy1.bat)) {
             enemy1.bat.kill();
+            text.setText("Score:" + (count += 50));
             this.ignite.play();
 
 
@@ -162,6 +192,7 @@ Game.Level2.prototype = {
         if (checkOverlap(fireballs, enemy2.bat)) {
 
             enemy2.bat.kill();
+            text.setText("Score:" + (count += 50));
             this.ignite.play();
 
         }
@@ -169,9 +200,22 @@ Game.Level2.prototype = {
     },
 
     resetPlayer: function() {
-
-        player.reset(100, 400);
+        text.setText("Score:" + (count -= 500));
+        player.reset(0, 0);
     },
+    nextLevel: function() {
+        backgroundMusic.mute = true;
+        this.state.start('Level3', true, false);
+    },
+
+    getItem: function() {
+
+        map.putTile(-1, layer.getTileX(player.x), layer.getTileY(player.y));
+        this.gold.play();
+        text.setText("Score:" + (count += 10));
+    },
+
+
     shootFireball: function() {
         if (this.time.now > shootTime) {
             shootTime = this.time.now + 800;

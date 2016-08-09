@@ -62,7 +62,7 @@ var enemy12;
 var enemy13;
 
 
-Game.Level1 = function(game) {};
+Game.Level3 = function(game) {};
 var background;
 var map;
 var layer;
@@ -86,11 +86,12 @@ var lives = 3;
 
 
 
-Game.Level1.prototype = {
+Game.Level3.prototype = {
     create: function(game) {
         this.camera.flash('#000000');
+        game.stage.backgroundColor = "#B7E3D2";
 
-        backgroundMusic = game.add.audio('L1');
+        backgroundMusic = game.add.audio('L3');
         backgroundMusic.loop = true;
         backgroundMusic.play();
 
@@ -98,21 +99,23 @@ Game.Level1.prototype = {
         this.fire = game.add.audio('fire');
         this.scream = game.add.audio('scream');
         this.gold = game.add.audio('gold');
-        background = this.add.tileSprite(0, 0, 7000, 5000, "background");
-        background.fixedToCamera = true;
+
+
 
         this.physics.arcade.gravity.y = 1400;
 
-        map = this.add.tilemap('map', 32, 32);
+        map = this.add.tilemap('map3', 32, 32);
         map.addTilesetImage('tileset');
         layer = map.createLayer(0);
         layer.resizeWorld();
-        map.setCollisionBetween(547, 552);
-        map.setCollisionBetween(200, 202);
-        map.setCollision(162);
+        map.setCollisionBetween(309, 311);
+        map.setCollisionBetween(448, 463);
+        map.setCollisionBetween(344, 345);
+        map.setCollision(257);
+        map.setCollision(313);
 
 
-        map.setTileIndexCallback(194, this.resetPlayer, this);
+        map.setTileIndexCallback(622, this.resetPlayer, this);
 
         map.setTileIndexCallback(148, this.getItem, this);
         map.setTileIndexCallback(150, this.getItem, this);
@@ -124,7 +127,7 @@ Game.Level1.prototype = {
 
 
 
-        player = this.add.sprite(100, 400, 'player');
+        player = this.add.sprite(0, 0, 'player');
         player.anchor.setTo(0.5, 0.5);
         player.animations.add('idle', [0, 1], 1, true);
         player.animations.add('jump', [2], 1, true);
@@ -296,12 +299,12 @@ Game.Level1.prototype = {
             console.log("Loud and Clear!");
         } else {
 
-            player.reset(100, 400);
+            player.reset(0, 0);
         }
     },
     nextLevel: function() {
         backgroundMusic.mute = true;
-        this.state.start('Level2', true, false);
+        this.state.start('MainMenu', true, false);
     },
 
     getItem: function() {
