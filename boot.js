@@ -7,7 +7,7 @@ Game.Boot.prototype = {
     },
 
     preload: function() {
-        this.load.image('preloaderBar', 'assets/preloader.png')
+        this.load.image('preloaderBar', 'assets/part21.png')
     },
     create: function() {
         this.state.start('Preloader')

@@ -1,3 +1,4 @@
+//Declaring 'var' or 'let' in front of enemy prototype objects causes errors. Those declarations have therefore been omitted.
 Enemybat = function(index, game, x, y) {
         this.bat = game.add.sprite(x, y, 'bat');
         this.bat.anchor.setTo(0.5, 0.5);
@@ -82,6 +83,19 @@ var text;
 var count = 0;
 // var text1;
 // var lives = 3;
+var style = {
+    font: "15px Arial",
+    fill: "blue"
+};;
+var label_score;
+// var name;
+// var button = document.getElementById("button").addEventListener('click', function()) {
+//         var name = name.getName
+//     }
+//     (function() {
+//         name.getname;
+//     });
+
 
 
 
@@ -98,7 +112,7 @@ Game.Level1.prototype = {
         this.fire = game.add.audio('fire');
         this.scream = game.add.audio('scream');
         this.gold = game.add.audio('gold');
-        background = this.add.tileSprite(0, 0, 7000, 5000, "background");
+        background = this.add.tileSprite(0, 0, 7000, 5000, "background1");
         background.fixedToCamera = true;
 
         this.physics.arcade.gravity.y = 1400;
@@ -123,6 +137,7 @@ Game.Level1.prototype = {
 
 
 
+        // this.label_score = this.game.add.text(-25, -40, name, style);
 
         player = this.add.sprite(100, 400, 'player');
         player.anchor.setTo(0.5, 0.5);
@@ -132,6 +147,12 @@ Game.Level1.prototype = {
         this.physics.arcade.enable(player);
         this.camera.follow(player);
         player.body.collideWorldBounds = true;
+
+
+        // player.addChild(this.label_score);
+
+
+
 
         controls = {
                 right: this.input.keyboard.addKey(Phaser.Keyboard.D),
@@ -193,6 +214,8 @@ Game.Level1.prototype = {
 
     },
     update: function() {
+
+
 
         this.physics.arcade.collide(player, layer);
 

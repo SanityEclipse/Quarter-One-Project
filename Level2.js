@@ -1,3 +1,4 @@
+//Declaring 'var' or 'let' in front of enemy prototype objects causes errors. Those declarations have therefore been omitted. 
 Enemybat = function(index, game, x, y) {
     this.bat = game.add.sprite(x, y, 'bat');
     this.bat.anchor.setTo(0.5, 0.5);
@@ -96,7 +97,7 @@ Game.Level2.prototype = {
         this.scream = game.add.audio('scream');
         this.gold = game.add.audio('gold');
 
-        background = this.add.tileSprite(0, 0, 7000, 5000, 'background');
+        background = this.add.tileSprite(0, 0, 7000, 5000, 'background2');
         background.fixedToCamera = true;
 
         this.physics.arcade.gravity.y = 1400;
