@@ -8,4 +8,16 @@ $(document).ready(function() {
             }
         });
     });
+    // (function(namespace) {
+    //     namespace.getname = function() {
+    //         $.ajax({
+    //             url: 'https://randomuser.me/api/',
+    //             success: function(data) {
+    //                 console.log(data.results[0].name.first);
+    //                 return data.results[0].name.first;
+    //             }
+    //         });
+    //
+    //     }
+    // })(window.name)
 });
